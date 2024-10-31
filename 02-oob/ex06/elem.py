@@ -23,6 +23,29 @@ class Text(str):
 
 
 class Elem:
+    '''
+        Use example:
+
+        docum = Elem('html', content=[
+            Elem('body', content=[
+                Elem('div', content=Text('Hola'))
+            ])
+        ])
+        print(docum)
+
+        # Flujo de llamadas recursivas (simplificado):
+        1. docum.__str__() 
+        → "<html>"
+        2. body.__str__()
+            → "<body>"
+            3. div.__str__()
+                → "<div>"
+                4. Text('Hello').__str__()
+                    → "Hello"
+                ← "<div>Hello</div>"
+            ← "<body><div>Hello</div></body>"
+        ← "<html><body><div>Hello</div></body></html>"
+    '''
     class ValidationError(Exception):
         def __init__(self) -> None:
             super().__init__("Error")
@@ -86,14 +109,18 @@ class Elem:
 
 
 def my_test():
-    elem = Elem(tag='html', content=[
-                Elem(tag='head', content=Elem(tag='title', content=Text('"Hello ground!"'))), 
-                Elem(tag='body', content=[
-                    Elem(tag='h1', content=Text('"Oh no, not again!"')), 
-                    Elem(tag='img', tag_type='simple', attr={'src':'http://i.imgur.com/pfp3T.jpg'})
-                ])
-            ])
-    print(elem)
+    formulario = Elem('form', attr={'action': '/enviar', 'method': 'post'}, content=[
+        Elem('div', attr={'class': 'form-group'}, content=[
+            Elem('label', attr={'for': 'nombre'}, content=Text('Nombre:')),
+            Elem('input', attr={'type': 'text', 'id': 'nombre'}, tag_type='simple')
+        ]),
+        Elem('div', attr={'class': 'form-group'}, content=[
+            Elem('label', attr={'for': 'email'}, content=Text('Email:')),
+            Elem('input', attr={'type': 'email', 'id': 'email'}, tag_type='simple')
+        ]),
+        Elem('button', attr={'type': 'submit'}, content=Text('Enviar'))
+    ])
+    print(formulario)
 
 
 if __name__ == '__main__':

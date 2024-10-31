@@ -23,6 +23,29 @@ class Text(str):
 
 
 class Elem:
+    '''
+        Use example:
+
+        docum = Elem('html', content=[
+            Elem('body', content=[
+                Elem('div', content=Text('Hola'))
+            ])
+        ])
+        print(docum)
+
+        # Flujo de llamadas recursivas (simplificado):
+        1. docum.__str__() 
+        → "<html>"
+        2. body.__str__()
+            → "<body>"
+            3. div.__str__()
+                → "<div>"
+                4. Text('Hello').__str__()
+                    → "Hello"
+                ← "<div>Hello</div>"
+            ← "<body><div>Hello</div></body>"
+        ← "<html><body><div>Hello</div></body></html>"
+    '''
     class ValidationError(Exception):
         def __init__(self) -> None:
             super().__init__("Error")
