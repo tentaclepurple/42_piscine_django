@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Ex01: Template Engine{% endblock %}
+{% block style %}<link rel="stylesheet" href="{% static 'style2.css' %}">{% endblock %}
+
+{% block content %}
+    <h1>Ex01: Template Engine</h1>
+    <p>Django's template engine is a powerful system that allows developers to create HTML templates with dynamic content. It provides a way to render HTML while integrating Python-like logic for more flexibility.</p>
+
+    <h2>Blocks</h2>
+    <p>Blocks are used to define sections of a template that can be overridden in child templates. For example:</p>
+    <pre><code>{% verbatim %}{% block content %}{% endblock %}{% endverbatim %}</code></pre>
+    <p>This enables you to create a base template with common elements, while allowing individual pages to define their own unique content.</p>
+
+    <h2>Loops (for ... in)</h2>
+    <p>Loops in Django templates allow you to iterate over a list or queryset. Here's an example:</p>
+    <pre><code>{% verbatim %}{% for item in item_list %}
+    <p>{{ item }}</p>
+{% endfor %}{% endverbatim %}</code></pre>
+
+    <h2>Control Structures (if statements)</h2>
+    <p>Django templates allow conditional statements, like <code>if</code> statements, to control the flow of content based on certain conditions:</p>
+    <pre><code>{% verbatim %}{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}!</p>
+{% else %}
+    <p>Please log in.</p>
+{% endif %}{% endverbatim %}</code></pre>
+
+    <h2>Context Variables</h2>
+    <p>Context variables are dynamic values passed from the view to the template. They are accessible using double curly braces <code>{% verbatim %}{{ variable_name }}{% endverbatim %}</code> and are used to inject data into the template:</p>
+    <pre><code>{% verbatim %}{{ user.username }}{% endverbatim %}</code></pre>
+    <p>For example, <code>user.username</code> could display the current username if it's passed in the context of the view.</p>
+    
+    <h2>Summary</h2>
+    <p>With the Django template engine, you can render HTML dynamically, making it an essential tool for creating flexible web applications. Using blocks, loops, conditional statements, and context variables helps keep templates clean, reusable, and efficient.</p>
+{% endblock %}

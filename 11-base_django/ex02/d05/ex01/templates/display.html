@@ -1,0 +1,29 @@
+<!-- templates/display.html -->
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Ex01: Display Process of a Static Page{% endblock %}
+{% block style %}<link rel="stylesheet" href="{% static 'style1.css' %}">{% endblock %}
+
+{% block content %}
+    <h1>Ex01: Display Process of a Static Page</h1>
+    <p>When a user requests a static page in Django, several steps are involved in processing and displaying that page. Here’s an overview of how Django handles this process, from receiving a request to sending back an HTML response:</p>
+    
+    <h2>1. URL Routing</h2>
+    <p>When a user enters a URL (e.g., <code>/ex01/display</code>) into their browser, Django’s URL dispatcher matches this URL to a specific view function in <code>urls.py</code>. This view function is responsible for processing the request and rendering the appropriate response.</p>
+
+    <h2>2. View Function</h2>
+    <p>Once the URL matches a view, Django calls the view function. This function is usually defined in <code>views.py</code>. The view can either return a pre-defined HTTP response or render a template using the <code>render</code> function. For example:</p>
+    <pre><code>def display_process_page(request):
+    return render(request, 'display.html')</code></pre>
+
+    <h2>3. Template Rendering</h2>
+    <p>The view function calls Django’s template engine to render the HTML template associated with the view (in this case, <code>display.html</code>). The template is processed, filling in any dynamic content or variables as needed, and generates the final HTML output.</p>
+
+    <h2>4. HTTP Response</h2>
+    <p>Once the template is rendered into HTML, the view function wraps it in an HTTP response object and sends it back to the client. The client (usually a browser) receives the response and displays the HTML page.</p>
+
+    <h2>Summary</h2>
+    <p>The entire process is designed to be efficient and flexible. Django’s use of URL routing, view functions, and templates makes it easy to create both static and dynamic pages.</p>
+{% endblock %}

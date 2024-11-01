@@ -1,0 +1,24 @@
+<!-- ex01/templates/django.html -->
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Ex01: Django, Web Framework{% endblock %}
+{% block style %}<link rel="stylesheet" href="{% static 'style1.css' %}">{% endblock %}
+
+{% block content %}
+    <h1>Ex01: Django, Web Framework</h1>
+    <p>Django is a high-level Python web framework that enables rapid development of secure and maintainable websites. Originally developed by the Lawrence Journal-World in 2003 and released publicly under an open-source license in 2005, Django has become one of the most popular frameworks for building web applications in Python.</p>
+    
+    <h2>Key Features of Django</h2>
+    <ul>
+        <li><strong>ORM (Object-Relational Mapping):</strong> Django’s ORM allows developers to interact with databases using Python code instead of SQL. This means developers can work with complex databases, relationships, and queries seamlessly.</li>
+        <li><strong>MTV Architecture:</strong> Django follows the MTV (Model-Template-View) architecture, which is a variant of the MVC (Model-View-Controller) architecture, adapted for the web. This structure keeps code organized and encourages separation of concerns.</li>
+        <li><strong>Automatic Admin Interface:</strong> Django can automatically generate an admin panel for managing application data, users, and more, based on the models defined in the project.</li>
+        <li><strong>Security:</strong> Django is designed with security in mind. It includes protection against common threats like SQL injection, cross-site scripting (XSS), cross-site request forgery (CSRF), and clickjacking.</li>
+        <li><strong>Modularity:</strong> Django encourages the use of reusable apps, which means functionality can be split into apps that can be easily reused or replaced.</li>
+    </ul>
+    
+    <h2>History of Django</h2>
+    <p>Django was created in 2003 by Adrian Holovaty and Simon Willison while they were working at the Lawrence Journal-World newspaper in Kansas. The framework was named after the jazz guitarist Django Reinhardt. It was made open source in 2005, and since then, the Django Software Foundation has maintained it, with a large community of contributors adding features, improving performance, and enhancing security.</p>
+{% endblock %}

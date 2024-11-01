@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fifty shades of bic.</title>
+    <style>
+        td, th {
+            width: 80px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fifty shades of bic.</h1>
+    <div>
+        <table>
+            <tr>
+                <th>noir</th>
+                <th>rouge</th>
+                <th>vert</th>
+                <th>bleu</th>
+            </tr>
+            {% for i in range %}
+            <tr>
+                <!-- grey -->
+                <td style="background-color: rgb({{ i }}, {{ i }}, {{ i }})"></td>
+                <!-- red  -->
+                <td style="background-color: rgb({{ i }}, 0, 0)"></td>
+                <!-- green -->
+                <td style="background-color: rgb(0, {{ i }}, 0)"></td>
+                <!-- blue  -->
+                <td style="background-color: rgb(0, 0, {{ i }})"></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
