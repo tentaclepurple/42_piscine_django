@@ -1,6 +1,6 @@
 VENV_NAME=django_env
 PROJECT_NAME=d06
-APP_NAME=ex00 
+APP_NAME=ex00sql
 
 
 project:

@@ -1,4 +1,8 @@
-all: env start secret deploy
+EX=ex01
+PROJECTNAME=d06
+
+
+all: env start deploy
 
 
 env:
@@ -21,31 +25,41 @@ start:
 	minikube start
 
 
-secret:
-	kubectl create secret generic postgres-secret --from-env-file=.env
-
-
 deploy:
 	kubectl apply -f postgres-deployment.yaml
 	kubectl apply -f adminer-deployment.yaml
 
 
+#run: forward runserver
+
+
+#runserver:
+#	cd $(EX)/$(PROJECTNAME) && python3 manage.py runserver &
+
+
+secret:
+	kubectl create secret generic postgres-secret --from-env-file=.env
+
+
 get:
 	kubectl get all
-# kubectl get secret postgres-secret -o yaml
-# kubectl get deployments
-# kubectl get pods
-# kubectl get services
+# 	kubectl get secret postgres-secret -o yaml
+# 	kubectl get deployments
+# 	kubectl get pods
+# 	kubectl get services
 
 
 exec_postgres:
-	kubectl exec -it postgres-649d8cccd6-6rqgk -- psql -U djangouser -d djangotraining
+	kubectl exec -it postgres-649d8cccd6-kndcn  -- psql -U djangouser -d djangotraining
 
 
-adminer:
 #	create a temporal access to the adminer service
-#	minikube service adminer --url
-#   kubectl port-forward service/adminer 30000:8080
+adminer:
+	minikube service adminer --url
+
+forward:
+	kubectl port-forward service/adminer 30000:8080 &
+	kubectl port-forward service/postgres 30432:5432 &
 
 
 stop:
@@ -57,8 +71,11 @@ stop:
 delete:
 	kubectl delete -f adminer-deployment.yaml
 	kubectl delete -f postgres-deployment.yaml
-	kubectl delete secret postgres-secret
 	minikube delete
+
+
+delete_volume:
+	kubectl delete pvc postgres-pv-claim
 
 
 clean:
