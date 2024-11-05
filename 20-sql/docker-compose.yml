@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  db:
+  postgres:
     image: postgres:13
     container_name: postgres
     ports:
@@ -15,11 +15,11 @@ services:
     image: adminer
     container_name: adminer
     environment:
-      ADMINER_DEFAULT_SERVER: db
+      ADMINER_DEFAULT_SERVER: postgres
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      - postgres
     env_file:
       - .env
 

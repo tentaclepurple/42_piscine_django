@@ -16,13 +16,13 @@ env:
 		echo "POSTGRES_USER=$$user" >> .env; \
 		echo "Enter your Postgres password. Keep it secret:"; \
 		read pass; \
-		echo "POSTGRES_HOST=$$host" >> .env; \
+		echo "POSTGRES_PASSWORD=$$pass" >> .env; \
 		echo "Enter Postgres host:"; \
 		read host; \
-		echo "POSTGRES_PASSWORD=$$pass" >> .env; \
+		echo "POSTGRES_HOST=$$host" >> .env; \
 		echo "Enter Postgres port:"; \
 		read port; \
-		echo "POSTGRES_PASSWORD=$$port" >> .env; \
+		echo "POSTGRES_PORT=$$port" >> .env; \
 	fi
 
 down:

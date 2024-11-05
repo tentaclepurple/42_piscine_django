@@ -13,8 +13,8 @@ def init(request):
             dbname=env("POSTGRES_DB"),
             user=env("POSTGRES_USER"),
             password=env("POSTGRES_PASSWORD"),
-            host=env("POSTGRES_HOST", default="localhost"),
-            port=env("POSTGRES_PORT", default="30432")
+            host=env("POSTGRES_HOST"),
+            port=env("POSTGRES_PORT")
         )
         cursor = conn.cursor()
         

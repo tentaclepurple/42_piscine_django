@@ -17,6 +17,8 @@ import environ
 env = environ.Env()
 env.read_env("../../.env")
 
+print()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -87,7 +89,7 @@ DATABASES = {
         'USER': env('POSTGRES_USER'),
         'PASSWORD': env('POSTGRES_PASSWORD'),
         'HOST': 'localhost',
-        'PORT': '30432',
+        'PORT': env('POSTGRES_PORT'),
     }
 }
 
