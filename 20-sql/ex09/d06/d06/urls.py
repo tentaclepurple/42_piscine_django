@@ -25,4 +25,5 @@ urlpatterns = [
 	path('ex03/', include('ex03orm.urls')),
 	path('ex05/', include('ex05orm.urls')),
 	path('ex07/', include('ex07orm.urls')),
+	path('ex09/', include('ex09orm.urls')),
 ]

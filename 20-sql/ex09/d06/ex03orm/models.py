@@ -13,4 +13,5 @@ class Movies(models.Model):
         return self.title
 
     class Meta:
-        db_table = 'ex05orm_movies'
+        db_table = 'ex03orm_movies'
+

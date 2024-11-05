@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex10 Search</title>
+</head>
+<body>
+    <h1>Search Movies and Characters</h1>
+    <form method="get">
+        <label>Movies minimum release date:</label>
+        <input type="date" name="min_date" required><br>
+
+        <label>Movies maximum release date:</label>
+        <input type="date" name="max_date" required><br>
+
+        <label>Planet diameter greater than:</label>
+        <input type="number" name="diameter" required><br>
+
+        <label>Character gender:</label>
+        <select name="gender" required>
+            {% for gender in genders %}
+                <option value="{{ gender }}">{{ gender }}</option>
+            {% endfor %}
+        </select><br>
+
+        <button type="submit">Search</button>
+    </form>
+
+    <h2>Results:</h2>
+    {% if results %}
+        <ul>
+            {% for person in results %}
+                {% for movie in person.movies.all %}
+                    <li>{{ movie.title }} - {{ person.name }} - {{ person.gender }} - {{ person.homeworld.name }} - {{ person.homeworld.diameter }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nothing corresponding to your research</p>
+    {% endif %}
+</body>
+</html>
