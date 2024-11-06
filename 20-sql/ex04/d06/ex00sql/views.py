@@ -14,7 +14,7 @@ def init(request):
             user=env("POSTGRES_USER"),
             password=env("POSTGRES_PASSWORD"),
             host=env("POSTGRES_HOST", default="localhost"),
-            port=env("POSTGRES_PORT", default="30432")
+            port=env("POSTGRES_PORT", default="5432")
         )
         cursor = conn.cursor()
         

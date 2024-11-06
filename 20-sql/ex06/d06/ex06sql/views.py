@@ -17,7 +17,7 @@ DB_NAME = env("POSTGRES_DB")
 DB_USER = env("POSTGRES_USER")
 DB_PASSWORD = env("POSTGRES_PASSWORD")
 DB_HOST = env("POSTGRES_HOST", default="localhost")
-DB_PORT = env("POSTGRES_PORT", default="30432")
+DB_PORT = env("POSTGRES_PORT", default="543")
 
 
 class MovieRemoveForm(forms.Form):

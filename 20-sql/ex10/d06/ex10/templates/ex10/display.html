@@ -1,0 +1,80 @@
+<!-- ex10/templates/ex10/display.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ex10 - Search Characters</title>
+    <style>
+        /* Basic styling for better presentation */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-container, .results-container {
+            margin-bottom: 30px;
+        }
+        .result-item {
+            margin-bottom: 10px;
+        }
+        .message {
+            color: red;
+            font-weight: bold;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            padding: 5px;
+            width: 300px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Characters</h1>
+
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                {{ form.min_release_date.label_tag }}
+                {{ form.min_release_date }}
+            </div>
+            <div>
+                {{ form.max_release_date.label_tag }}
+                {{ form.max_release_date }}
+            </div>
+            <div>
+                {{ form.min_diameter.label_tag }}
+                {{ form.min_diameter }}
+            </div>
+            <div>
+                {{ form.gender.label_tag }}
+                {{ form.gender }}
+            </div>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="results-container">
+        {% if message %}
+            <p class="message">{{ message }}</p>
+        {% endif %}
+
+        {% if results %}
+            <h2>Results:</h2>
+            <ul>
+                {% for result in results %}
+                    <li class="result-item">
+                        {{ result.movies__title }} - {{ result.name }} - {{ result.gender }} - {{ result.homeworld__name }} - {{ result.homeworld__diameter }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
