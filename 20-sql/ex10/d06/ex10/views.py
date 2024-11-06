@@ -31,10 +31,6 @@ def display(request):
             ).distinct()
 
             results = list(matching_pairs)
-            print("results:")
-            for result in results:
-                print(result)
-                print()
 
             if not results:
                 message = "Nothing corresponding to your research"
