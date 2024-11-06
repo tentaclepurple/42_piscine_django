@@ -102,7 +102,20 @@ def display(request):
         if not rows:
             return HttpResponse("No data available")
 
-        html = "<table border='1'><tr><th>Title</th><th>Episode</th><th>Opening Crawl</th><th>Director</th><th>Producer</th><th>Release Date</th></tr>"
+        html = """
+        <table border='1'>
+            <tr>
+                <th>Title</th>
+                <th>Episode</th>
+                <th>Opening Crawl</th>
+                <th>Director</th>
+                <th>Producer</th>
+                <th>Release Date</th>
+                <th>Created</th>
+                <th>Updated</th>
+            </tr>
+        """
+
         for row in rows:
             html += "<tr>" + "".join(f"<td>{col if col else ''}</td>" for col in row) + "</tr>"
         html += "</table>"
