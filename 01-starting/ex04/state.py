@@ -18,7 +18,7 @@ def get_state_by_capital(capital):
     # Reverse the capital_cities dictionary to search by capital
     reversed_capitals = {v: k for k, v in capital_cities.items()}
     
-    print(reversed_capitals)
+    #print(reversed_capitals)
 
     if capital in reversed_capitals:
         state_code = reversed_capitals[capital]

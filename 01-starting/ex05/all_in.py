@@ -35,8 +35,7 @@ def main():
         return 
 
     args = sys.argv[1]
-    if ",," in args:
-        return
+    /
         
     queries = args.split(',')
     

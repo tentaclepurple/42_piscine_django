@@ -1,6 +1,10 @@
 import sys
 
 
+""" def geohashing(latitude, longitude, date='2005-05-26'):
+    antigravity.geohash(latitude, longitude, date.encode('utf-8')) """
+
+
 def print_precision_table():
     # Table of precision levels and the areas they represent
     table = """
