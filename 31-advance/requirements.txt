@@ -1,0 +1,4 @@
+Django==3.2  # Versión LTS actual (asegúrate de confirmar la LTS específica)
+django-bootstrap4
+
+python-dotenv==1.0.1

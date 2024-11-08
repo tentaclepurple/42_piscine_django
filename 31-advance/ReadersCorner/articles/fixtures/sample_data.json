@@ -1,0 +1,101 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "username": "popo",
+            "password": "pbkdf2_sha256$260000$ByUhoGpwCAKQnjs6erdmMT$dC1n53IwnmWQAmSrm8BznfGVgX+/98IT5nBV3rOydIU=",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "username": "plpl",
+            "password": "pbkdf2_sha256$260000$ByUhoGpwCAKQnjs6erdmMT$dC1n53IwnmWQAmSrm8BznfGVgX+/98IT5nBV3rOydIU=",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "username": "pipi",
+            "password": "pbkdf2_sha256$260000$ByUhoGpwCAKQnjs6erdmMT$dC1n53IwnmWQAmSrm8BznfGVgX+/98IT5nBV3rOydIU=",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 1,
+        "fields": {
+            "title": "Nostromo",
+            "author": 1,
+            "created": "2023-01-01T10:00:00Z",
+            "synopsis": "Nostromo is a novel by Joseph Conrad published in 1904.",
+            "content": "Published in 1904. Set in the fictitious South American republic of Costaguana, it is an exploration of the debilitating effects of colonialism, capitalism, and political revolution."
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 2,
+        "fields": {
+            "title": "Neuromancer",
+            "author": 1,
+            "created": "2023-01-02T12:30:00Z",
+            "synopsis": "Neuromancer is a 1984 science fiction novel by American-Canadian writer William Gibson.",
+            "content": "Neuromancer is a 1984 science fiction novel by American-Canadian writer William Gibson. It is one of the best-known works in the cyberpunk genre and the first novel to win the Nebula Award, the Philip"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 3,
+        "fields": {
+            "title": "Snow Crash",
+            "author": 2,
+            "created": "2023-01-03T15:45:00Z",
+            "synopsis": "Snow Crash is a science fiction novel by American writer Neal Stephenson.",
+            "content": "Published in 1992. Like many of Stephenson's other novels, it covers history, linguistics, anthropology, archaeology, relig"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 4,
+        "fields": {
+            "title": "The League of Extraordinary Gentlemen",
+            "author": 3,
+            "created": "2023-01-04T08:00:00Z",
+            "synopsis": "The League of Extraordinary Gentlemen is a comic book series co-created by writer Alan Moore and artist Kevin O'Neill.",
+            "content": "The League of Extraordinary Gentlemen is a comic book series co-created by writer Alan Moore and artist Kevin O'Neill. It was first published by America's Best Comics, an imprint of Wildstorm, and later under the Vertigo imprint of DC Comics."
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 5,
+        "fields": {
+            "title": "Watchmen",
+            "author": 2,
+            "created": "2023-01-05T20:30:00Z",
+            "synopsis": "Watchmen is a comic book limited series by writer Alan Moore and artist Dave Gibbons.",
+            "content": "Watchmen is a comic book limited series by writer Alan Moore and artist Dave Gibbons. It was published by DC Comics in 1986 and 1987, and collected in a single volume edition in 1987."
+        }
+    },
+	{
+		"model": "articles.article",
+		"pk": 6,
+		"fields": {
+			"title": "3 body problem",
+			"author": 3,
+			"created": "2023-01-06T09:00:00Z",
+			"synopsis": "Science fiction novel by the Chinese writer Liu Cixin.",
+			"content": "3 body problem is a science fiction novel by the Chinese writer Liu Cixin. It is the first novel of the Remembrance of Earth's Past trilogy, but the last one to be translated into English."
+		}
+	}
+]
