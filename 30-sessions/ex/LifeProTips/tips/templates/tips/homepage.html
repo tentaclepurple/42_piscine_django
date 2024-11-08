@@ -6,7 +6,7 @@
 {% block content %}
     <h1>Welcome to Life Pro Tips</h1>
     {% if user.is_authenticated %}
-        <h2>Share your own tip!</h2>
+        <h2>Share your tip!</h2>
         <form method="post">
             {% csrf_token %}
             {% bootstrap_form form %}

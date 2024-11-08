@@ -43,10 +43,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def can_downvote_permission(self):
         """Allow downvote only if user has manual permission or meets reputation and upvotes criteria."""
         # User needs either manual permission or 15 reputation points with at least 2 upvotes on their tips
-        if self.can_downvote:
-            return True
+        #if self.can_downvote:
+         #   return True
         total_upvotes = sum(tip.upvoted_by.count() for tip in self.tips.all())
-        return self.reputation >= 15 and total_upvotes >= 2
+        return self.reputation >= 15 and total_upvotes >= 2 and self.can_downvote
 
     def can_delete_permission(self):
         """Allow delete if user has at least 30 reputation points or has manual permission."""
@@ -55,9 +55,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         # Display username with reputation in parentheses
         return f"{self.username} ({self.reputation})"
-
-
-
 
 
 class Tip(models.Model):
