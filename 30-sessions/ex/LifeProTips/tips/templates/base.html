@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Life Pro Tips{% endblock %}</title>
+    
+    {% load bootstrap4 %}
+    {% bootstrap_css %} <!-- Bootstrap CSS -->
+</head>
+<body>
+
+    <!-- Navbar that will be available across all pages -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'homepage' %}">LifeProTips</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <p class="nav-link">Hello, {{ user.username }}!</p>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Sign up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <p class="nav-link">Hello, {{ user_name }}</p> <!-- Display anonymous user name if available -->
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main content block where specific page content will be rendered -->
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Bootstrap JavaScript (including dependencies jQuery and Popper.js) -->
+    {% bootstrap_javascript jquery='full' %}
+</body>
+</html>
