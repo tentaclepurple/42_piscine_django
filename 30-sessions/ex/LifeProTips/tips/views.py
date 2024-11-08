@@ -91,7 +91,8 @@ def homepage(request):
     for tip in tips:
         # Check if the user is authenticated and set the downvote permission
         if request.user.is_authenticated:
-            tip.can_downvote = (request.user == tip.author or Tip.can_user_downvote(request.user))
+            # Use the combined permission check on the user
+            tip.can_downvote = (request.user == tip.author or request.user.can_downvote_permission())
         else:
             tip.can_downvote = False  # Default to False for anonymous users
 
@@ -109,7 +110,6 @@ def homepage(request):
 
 
 
-
 @login_required
 def upvote_tip(request, tip_id):
     """Handles upvoting a tip. Toggles the upvote if it was already cast."""
@@ -124,26 +124,21 @@ def upvote_tip(request, tip_id):
 
 @login_required
 def downvote_tip(request, tip_id):
-    """Handles downvoting a tip. Only users with at least two upvotes in their own tips or the tip's author can downvote."""
     tip = get_object_or_404(Tip, id=tip_id)
-
-    # Allow downvote if the user is the author of the tip or has at least two upvotes on their own tips
-    if tip.author == request.user or Tip.can_user_downvote(request.user):
-        if request.user in tip.downvoted_by.all():
-            tip.downvoted_by.remove(request.user)  # Remove downvote if it exists
-        else:
-            tip.downvoted_by.add(request.user)     # Add downvote
-            tip.upvoted_by.remove(request.user)    # Remove any upvote
+    # Allows downvote if user is the author or has downvote permission based on manual or reputation criteria
+    if request.user == tip.author or request.user.can_downvote_permission():
+        tip.downvote(request.user)
         return redirect('homepage')
     else:
-        # Raise an error if the user doesn't meet the downvote criteria and is not the author
-        raise PermissionDenied("You do not have permission to downvote.")
+        raise PermissionDenied("You don't have permission to downvote this tip.")
 
 
 @login_required
 def delete_tip(request, tip_id):
-    """Allows a logged-in user to delete a tip they created."""
     tip = get_object_or_404(Tip, id=tip_id)
-    if tip.author == request.user:
+    # Allows delete if user is the author or has delete permission based on manual or reputation criteria
+    if request.user == tip.author or request.user.can_delete_permission():
         tip.delete()
-    return redirect('homepage')
+        return redirect('homepage')
+    else:
+        raise PermissionDenied("You don't have permission to delete this tip.")

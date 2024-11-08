@@ -1,20 +1,20 @@
 from django.contrib import admin
-from .models import Tip, CustomUser
 from django.contrib.auth.admin import UserAdmin
+from .models import CustomUser, Tip
 
-# CustomUserAdmin configuration to match the fields available in CustomUser
+# Register CustomUser with a custom admin configuration
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
-    # Define custom fieldsets for CustomUser, excluding email, first_name, and last_name
+    # Define the custom fieldsets, including reputation as read-only
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        ('Reputation & Custom Permissions', {'fields': ('reputation', 'can_downvote', 'can_delete')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
-        ('Custom Permissions', {'fields': ('can_downvote',)}),  # Custom field added for downvote control
     )
-    # Customize the list_display and make date_joined readonly
-    list_display = ('username', 'date_joined', 'is_active', 'is_staff', 'can_downvote')
-    readonly_fields = ('date_joined',)  # Make date_joined read-only
+    # Display username, reputation, and other fields in the user list
+    list_display = ('username', 'reputation', 'is_active', 'is_staff', 'can_downvote', 'can_delete')
+    readonly_fields = ('reputation', 'date_joined')  # Make reputation read-only in the admin panel
     list_filter = ('is_staff', 'is_active')
     search_fields = ('username',)
 
