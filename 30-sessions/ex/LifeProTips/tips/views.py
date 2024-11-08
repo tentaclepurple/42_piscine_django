@@ -112,26 +112,22 @@ def homepage(request):
 
 @login_required
 def upvote_tip(request, tip_id):
-    """Handles upvoting a tip. Toggles the upvote if it was already cast."""
     tip = get_object_or_404(Tip, id=tip_id)
-    if request.user in tip.upvoted_by.all():
-        tip.upvoted_by.remove(request.user)  # Remove upvote if it exists
-    else:
-        tip.upvoted_by.add(request.user)      # Add upvote
-        tip.downvoted_by.remove(request.user) # Remove any downvote
+    # Allow upvote for authenticated users
+    tip.upvote(request.user)
     return redirect('homepage')
 
 
 @login_required
 def downvote_tip(request, tip_id):
     tip = get_object_or_404(Tip, id=tip_id)
-    # Allows downvote if user is the author or has downvote permission based on manual or reputation criteria
+    # Check if user is either the author or has permission based on reputation/upvotes
     if request.user == tip.author or request.user.can_downvote_permission():
         tip.downvote(request.user)
         return redirect('homepage')
     else:
+        # Raise permission denied if user lacks downvote privileges
         raise PermissionDenied("You don't have permission to downvote this tip.")
-
 
 @login_required
 def delete_tip(request, tip_id):

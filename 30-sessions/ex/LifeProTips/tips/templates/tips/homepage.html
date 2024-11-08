@@ -24,21 +24,25 @@
 
                 {% if user.is_authenticated %}
                     <div class="mt-2">
-                        <!-- Upvote button -->
+                        <!-- Always show upvote and downvote counts, even if buttons are hidden -->
+                        <span class="badge badge-success">Upvotes: {{ tip.upvotes_count }}</span>
+                        <span class="badge badge-danger">Downvotes: {{ tip.downvotes_count }}</span>
+
+                        <!-- Upvote button: always shown to authenticated users -->
                         <form action="{% url 'upvote_tip' tip.id %}" method="post" style="display: inline;">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-success">Upvote ({{ tip.upvotes_count }})</button>
+                            <button type="submit" class="btn btn-success">Upvote</button>
                         </form>
 
-                        <!-- Downvote button: only shown if user is author or has combined downvote permission -->
+                        <!-- Downvote button: only shown if user has permission -->
                         {% if tip.author == user or user.can_downvote_permission %}
                             <form action="{% url 'downvote_tip' tip.id %}" method="post" style="display: inline;">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-danger">Downvote ({{ tip.downvotes_count }})</button>
+                                <button type="submit" class="btn btn-danger">Downvote</button>
                             </form>
                         {% endif %}
 
-                        <!-- Delete button: only shown if user is author or has combined delete permission -->
+                        <!-- Delete button: only shown if user has permission -->
                         {% if tip.author == user or user.can_delete_permission %}
                             <form action="{% url 'delete_tip' tip.id %}" method="post" style="display: inline;">
                                 {% csrf_token %}
