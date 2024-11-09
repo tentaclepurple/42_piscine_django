@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "My Favourite Articles" %}{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">{% trans "My Favourite Articles" %}</h1>
+<ul class="list-group">
+    {% for favourite in favourites %}
+        <li class="list-group-item">
+            <a href="{% url 'article_detail' favourite.article.pk %}">{{ favourite.article.title }}</a>
+        </li>
+    {% empty %}
+        <li class="list-group-item">{% trans "No favourite articles yet." %}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

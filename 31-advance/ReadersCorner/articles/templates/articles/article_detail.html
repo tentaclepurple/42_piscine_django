@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">{{ article.title }}</h1>
+<p><strong>{% trans "Author:" %}</strong> {{ article.author.username }}</p>
+<p><strong>{% trans "Created:" %}</strong> {{ article.created }}</p>
+<p><strong>{% trans "Synopsis:" %}</strong> {{ article.synopsis }}</p>
+<p><strong>{% trans "Content:" %}</strong> {{ article.content }}</p>
+
+<a href="{% url 'add_to_favourite' article.pk %}" class="btn btn-primary">{% trans "Add to Favourites" %}</a>
+<a href="{% url 'articles' %}" class="btn btn-secondary">{% trans "Back to Articles" %}</a>
+{% endblock %}

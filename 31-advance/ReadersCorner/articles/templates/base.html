@@ -1,0 +1,89 @@
+{% load i18n %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Site{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <!-- Page Title -->
+        <h1 class="display-4">{% trans "Articles" %} <small class="text-muted">{% trans "Share your writings" %}</small></h1>
+
+        <!-- Language switcher form -->
+        <div class="text-right">
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" name="language" value="en" class="btn btn-link">English</button> |
+                <button type="submit" name="language" value="es" class="btn btn-link">Español</button>
+            </form>
+        </div>
+
+        <!-- Navigation Menu Bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-3 mb-4">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <i class="fas fa-book"></i> {% trans "Articles" %}
+            </a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'articles' %}">{% trans "Articles" %}</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'favourites' %}">{% trans "Favourites" %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'publish_article' %}">{% trans "Publications" %}</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">{% trans "Register" %}</a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+                <!-- Right side of the navbar: login form or user info -->
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <span class="navbar-text">{% trans "Logged as" %} {{ user.username }}</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">{% trans "Logout" %}</a>
+                        </li>
+                    {% else %}
+                        <form class="form-inline" method="post" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            <input class="form-control mr-sm-2" type="text" name="username" placeholder="{% trans 'Username' %}" required>
+                            <input class="form-control mr-sm-2" type="password" name="password" placeholder="{% trans 'Password' %}" required>
+                            <button class="btn btn-outline-light" type="submit">{% trans "Login" %}</button>
+                        </form>
+                        {% if form.errors %}
+                            <div class="text-danger ml-3">
+                                {{ form.errors }}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content Block -->
+        <div>
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <!-- Bootstrap and Font Awesome JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

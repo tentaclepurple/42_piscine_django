@@ -60,3 +60,7 @@ postgres:
 
 clean: down
 	yes | docker system prune -a
+
+
+#py manage.py makemessages -l es
+#py manage.py compilemessages

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Add to Favourite" %}{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">{% trans "Add to Favourite" %}</h1>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">{% trans "Add to Favourite" %}</button>
+</form>
+{% endblock %}

@@ -1,0 +1,130 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-09 22:08+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: articles/templates/articles/add_to_favourite.html:4
+#: articles/templates/articles/add_to_favourite.html:7
+#: articles/templates/articles/add_to_favourite.html:10
+msgid "Add to Favourite"
+msgstr "Añadir a favorito"
+
+#: articles/templates/articles/article_detail.html:8
+msgid "Author:"
+msgstr "Autor:"
+
+#: articles/templates/articles/article_detail.html:9
+msgid "Created:"
+msgstr "Creado:"
+
+#: articles/templates/articles/article_detail.html:10
+msgid "Synopsis:"
+msgstr "Sinopsis:"
+
+#: articles/templates/articles/article_detail.html:11
+msgid "Content:"
+msgstr "Contenido:"
+
+#: articles/templates/articles/article_detail.html:13
+msgid "Add to Favourites"
+msgstr "Añadir a favorito"
+
+#: articles/templates/articles/article_detail.html:14
+msgid "Back to Articles"
+msgstr "Regresar a Artículos"
+
+#: articles/templates/articles/article_list.html:22
+msgid "Title"
+msgstr "Título"
+
+#: articles/templates/articles/article_list.html:23
+msgid "Synopsis"
+msgstr "Sinopsis"
+
+#: articles/templates/articles/article_list.html:24
+msgid "Writer"
+msgstr "Escritor"
+
+#: articles/templates/articles/article_list.html:25
+msgid "Created"
+msgstr "Creado"
+
+#: articles/templates/articles/article_list.html:26
+msgid "When"
+msgstr "Cuando"
+
+#: articles/templates/articles/favourites_list.html:4
+#: articles/templates/articles/favourites_list.html:7
+msgid "My Favourite Articles"
+msgstr "Mis artículos favoritos"
+
+#: articles/templates/articles/favourites_list.html:14
+msgid "No favourite articles yet."
+msgstr "No hay favoritos aun"
+
+#: articles/templates/articles/publish_article.html:4
+#: articles/templates/articles/publish_article.html:7
+msgid "Publish a New Article"
+msgstr "Publicar un nuevo artículo"
+
+#: articles/templates/articles/publish_article.html:11
+msgid "Publish"
+msgstr "Publicar"
+
+#: articles/templates/articles/register.html:4
+#: articles/templates/articles/register.html:7
+#: articles/templates/articles/register.html:11 articles/templates/base.html:48
+msgid "Register"
+msgstr "Registrar"
+
+#: articles/templates/base.html:18 articles/templates/base.html:32
+#: articles/templates/base.html:37
+msgid "Articles"
+msgstr "Artículos"
+
+#: articles/templates/base.html:18
+msgid "Share your writings"
+msgstr "Comparte tus escritos"
+
+#: articles/templates/base.html:41
+msgid "Favourites"
+msgstr "Favoritos"
+
+#: articles/templates/base.html:44
+msgid "Publications"
+msgstr "Publicaciones"
+
+#: articles/templates/base.html:57
+msgid "Logged as"
+msgstr "Inscrito como"
+
+#: articles/templates/base.html:60
+msgid "Logout"
+msgstr "Desincribir"
+
+#: articles/templates/base.html:65
+msgid "Username"
+msgstr "Nombre de usuario"
+
+#: articles/templates/base.html:66
+msgid "Password"
+msgstr "Contraseña"
+
+#: articles/templates/base.html:67
+msgid "Login"
+msgstr "Ingresar"
