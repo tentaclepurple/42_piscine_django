@@ -1,5 +1,4 @@
 # account/views.py
-
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib.auth import login, logout
@@ -12,7 +11,7 @@ def account_view(request):
     if request.user.is_authenticated:
         # Return the logged-in context
         return render(request, 'account/account.html',
-						{'username': request.user.username})
+                     {'username': request.user.username})
     else:
         # Return the login form context
         form = AuthenticationForm()
@@ -27,10 +26,16 @@ def ajax_login(request):
             # Log the user in if the form is valid
             user = form.get_user()
             login(request, user)
-            return JsonResponse({'success': True, 'username': user.username})
+            return JsonResponse({
+                'success': True, 
+                'username': user.username,
+                'redirect_url': '/chat/'
+            })
         else:
-            # Return form errors if login is not valid
-            return JsonResponse({'success': False, 'errors': form.errors})
+            return JsonResponse({
+                'success': False, 
+                'message': 'Invalid username or password'
+            })
 
 
 def ajax_logout(request):
@@ -38,5 +43,8 @@ def ajax_logout(request):
     if request.method == 'POST' and request.user.is_authenticated:
         # Log the user out if they are authenticated
         logout(request)
-        return JsonResponse({'success': True})
+        return JsonResponse({
+            'success': True,
+            'redirect_url': '/chat/'
+        })
     return JsonResponse({'success': False})

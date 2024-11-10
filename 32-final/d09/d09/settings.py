@@ -19,7 +19,6 @@ load_dotenv('../.env')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -32,9 +31,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_REDIRECT_URL = 'chat:index'
-LOGOUT_REDIRECT_URL = 'account'
-
+#LOGIN_URL = '/account/'  
+LOGIN_REDIRECT_URL = '/chat/' 
+LOGOUT_REDIRECT_URL = '/' 
 
 # Application definition
 
