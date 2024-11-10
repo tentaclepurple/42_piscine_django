@@ -56,7 +56,7 @@
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
             
-            // Manejar diferentes tipos de mensajes
+            // manage different types of messages
             if (data.type === 'user_list') {
                 updateUserList(data.users);
             } else if (data.type === 'user_joined') {
