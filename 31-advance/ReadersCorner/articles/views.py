@@ -5,10 +5,12 @@ from django.contrib import messages
 
 from django.views.generic import ListView, DetailView, RedirectView
 from django.views.generic.edit import CreateView
+from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django import forms
 from django.http import HttpResponseRedirect
 from .models import Article, UserFavouriteArticle
+
 
 
 class AddToFavouriteView(LoginRequiredMixin, CreateView):
@@ -52,7 +54,12 @@ class PublishArticleView(LoginRequiredMixin, CreateView):
 class RegisterView(CreateView):
     form_class = UserCreationForm
     template_name = 'articles/register.html'
-    success_url = reverse_lazy('login')
+    success_url = '/articles/' 
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('home')
+        return super().dispatch(request, *args, **kwargs)
 
 
 class ArticleListView(ListView):

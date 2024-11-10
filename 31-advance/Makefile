@@ -27,6 +27,8 @@ load:
 super:
 	cd $(PROJECT_NAME) && python3 manage.py createsuperuser
 
+test:
+	cd $(PROJECT_NAME) && python3 manage.py test $(APP_NAME)
 
 env:
 	@if [ -f .env ]; then \
