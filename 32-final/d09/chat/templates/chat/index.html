@@ -1,0 +1,16 @@
+<!-- chat/templates/chat/index.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Available Chat Rooms</h2>
+    <div class="list-group">
+        {% for chatroom in chatrooms %}
+            <a href="{% url 'chat:room' chatroom.name %}" class="list-group-item list-group-item-action">
+                {{ chatroom.name }}
+            </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
