@@ -1,89 +1,36 @@
 import sys
+import antigravity
 
 
-""" def geohashing(latitude, longitude, date='2005-05-26'):
-    antigravity.geohash(latitude, longitude, date.encode('utf-8')) """
-
-
-def print_precision_table():
-    # Table of precision levels and the areas they represent
-    table = """
-    Precision | Geohash Length | Approximate Area Represented
-    ---------------------------------------------------------
-    1         | 1 character    | ±5,000 km
-    2         | 2 characters   | ±1,250 km
-    3         | 3 characters   | ±156 km
-    4         | 4 characters   | ±40 km
-    5         | 5 characters   | ±5 km
-    6         | 6 characters   | ±1.2 km
-    7         | 7 characters   | ±150 m
-    8         | 8 characters   | ±19 m
-    9         | 9 characters   | ±5 m
-    10        | 10 characters  | ±0.6 m
-    """
-    return table
-
-
-def encode_geohash(latitude, longitude, precision=5):
-
-    BASE32 = "0123456789bcdefghjkmnpqrstuvwxyz"
-    
-    lat_min, lat_max = -90.0, 90.0
-    lon_min, lon_max = -180.0, 180.0
-    geohash = []
-    bit = 0
-    ch = 0
-    even = True
-
-    while len(geohash) < precision:
-        if even:
-            mid = (lon_min + lon_max) / 2
-            if longitude > mid:
-                ch |= 1 << (4 - bit)
-                lon_min = mid
-            else:
-                lon_max = mid
-        else:
-            mid = (lat_min + lat_max) / 2
-            if latitude > mid:
-                ch |= 1 << (4 - bit)
-                lat_min = mid
-            else:
-                lat_max = mid
-
-        even = not even
-        if bit < 4:
-            bit += 1
-        else:
-            geohash += BASE32[ch]
-            bit = 0
-            ch = 0
-
-    return ''.join(geohash)
-
-
-def main():
-    if len(sys.argv) != 3:
-        print("Usage: python geohashing.py <latitude> <longitude>")
-        print("Example: python geohashing.py 37.421542 -122.085589")
+def antigrav():
+    # Check if we have at least 3 arguments (script name + 3 parameters)
+    if len(sys.argv) != 4:
+        print("Error: Invalid number of arguments")
+        print("Usage: python3 geohashing.py <latitude> <longitude> <datedow>")
         sys.exit(1)
-
+    
     try:
+        # Convert latitude and longitude to float
         latitude = float(sys.argv[1])
         longitude = float(sys.argv[2])
-        print(print_precision_table())
-        precision = int(input("Introduce desired precision\n"))
-
-        geohash_result = encode_geohash(latitude, longitude, precision)
-        print("Geohash:", geohash_result)
-
-    except ValueError:
-        print("Error: Latitude and longitude must be valid numbers.")
+        datedow = sys.argv[3]
+        
+        # Validate latitude and longitude ranges
+        if not (-90 <= latitude <= 90):
+            raise ValueError("Latitude must be between -90 and 90 degrees")
+        if not (-180 <= longitude <= 180):
+            raise ValueError("Longitude must be between -180 and 180 degrees")
+        
+        # Calculate and display geohash
+        antigravity.geohash(latitude, longitude, datedow.encode())
+        
+    except ValueError as e:
+        print(f"Error: {str(e)}")
         sys.exit(1)
     except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+        print(f"Error: An unexpected error occurred - {str(e)}")
         sys.exit(1)
 
 
 if __name__ == "__main__":
-    main()
+    antigrav()
